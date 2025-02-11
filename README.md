@@ -120,7 +120,7 @@ Available genres:
 pytest
 ```
 
-## Error Handling
+## Error Handling 
 
 The API includes proper error handling for:
 
