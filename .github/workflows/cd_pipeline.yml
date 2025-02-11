@@ -3,10 +3,24 @@ on:
     pull_request: 
         types:
             - closed
+
 jobs:
-    on_merge: 
+    deploy: 
         runs-on: ubuntu-latest  
         if: github.event.pull_request.merged == true
         steps:
-            - uses: actions/checkout@v2 
-            - run: echo "Pull request merged"
+            - uses: actions/checkout@v4
+            - run: |
+                    echo "${{ secrets.EC2_KEY }}" > private_key.pem
+                    chmod 600 private_key.pem
+            - run: |
+                ssh -i private_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
+                    cd ${{ secrets.EC2_REPO_PATH }}
+                    git reset --hard origin/main  # Ensure clean state
+                    git pull origin main  # Pull latest changes
+                    
+                    source venv/bin/activate  # Activate virtual environment
+                    pip install -r requirements.txt  # Install dependencies if needed 
+                    
+                    pm2 restart uvicorn --interpreter=python3 --name myapp -- run main:app --host 0.0.0.0 --port 8000
+                EOF
