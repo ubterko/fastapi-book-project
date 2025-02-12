@@ -14,8 +14,6 @@ db.books = {
         title="The Hobbit",
         author="J.R.R. Tolkien",
         publication_year=1937,
-        publication_year1=1937,
-        publication_year2=1937,
         genre=Genre.SCI_FI,
     ),
     2: Book(
@@ -61,7 +59,7 @@ async def get_book(book_id: int):
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, 
-            detail="404 Not Found")
+            detail="404 is really really Not Found")
 
 # Endpoint for modifying book by book_id
 @router.put("/{book_id}", response_model=Book, status_code=status.HTTP_200_OK)
