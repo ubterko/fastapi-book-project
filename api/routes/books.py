@@ -14,8 +14,8 @@ db.books = {
         title="The Hobbit",
         author="J.R.R. Tolkien",
         publication_year=1937,
-        publication_year=1937,
-        publication_year=1937,
+        publication_year1=1937,
+        publication_year2=1937,
         genre=Genre.SCI_FI,
     ),
     2: Book(
