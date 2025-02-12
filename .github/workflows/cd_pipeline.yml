@@ -19,8 +19,8 @@ jobs:
                     git reset --hard origin/main  # Ensure clean state
                     git pull origin main  # Pull latest changes
                     
-                    source venv/bin/activate  # Activate virtual environment
-                    pip install -r requirements.txt  # Install dependencies if needed 
+                    source env/bin/activate  # Activate virtual environment
+                    # pip install -r requirements.txt  # Install dependencies if needed 
                     
-                    pm2 restart uvicorn --interpreter=python3 --name fastapi-app -- run main:app --host 127.0.0.1 --port 8000
+                    pm2 restart uvicorn --interpreter=python3 --name myapp -- run main:app --host 0.0.0.0 --port 8000
                 EOF
