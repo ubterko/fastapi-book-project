@@ -73,7 +73,7 @@ async def update_book(book_id: int, book: Book) -> Book:
     )
 
 
-# Endpoint for deleting book by book_id
+# Endpoint for deleting a book by book_id
 @router.delete("/{book_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_book(book_id: int) -> None:
     db.delete_book(book_id)
