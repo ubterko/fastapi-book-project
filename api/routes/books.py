@@ -48,7 +48,6 @@ async def get_books() -> OrderedDict[int, Book]:
     return db.get_books()
 
 
-# This endpoints returns a single book by book_id
 @router.get("/{book_id}", response_model=Book, status_code=status.HTTP_200_OK)
 async def get_book(book_id: int):
     try:
@@ -61,7 +60,7 @@ async def get_book(book_id: int):
             status_code=status.HTTP_404_NOT_FOUND, 
             detail="404 Not Found")
 
-
+# This endpoint allows book to be modified
 @router.put("/{book_id}", response_model=Book, status_code=status.HTTP_200_OK)
 async def update_book(book_id: int, book: Book) -> Book:
     return JSONResponse(
