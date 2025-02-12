@@ -22,5 +22,5 @@ jobs:
                     source venv/bin/activate  # Activate virtual environment
                     pip install -r requirements.txt  # Install dependencies if needed 
                     
-                    pm2 restart uvicorn --interpreter=python3 --name myapp -- run main:app --host 0.0.0.0 --port 8000
+                    pm2 restart fastapi-app
                 EOF
