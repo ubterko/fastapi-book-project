@@ -56,12 +56,12 @@ async def get_book(book_id: int) -> Union[Book, dict]:
     try:
         book = db.get_book(book_id)
         if book is None:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="404 Not Found")
         return book
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, 
-            detail="404 Not Found")
+            detail="Book not found")
 
 
 # Endpoint for modifying book by book_id
