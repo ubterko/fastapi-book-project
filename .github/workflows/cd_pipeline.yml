@@ -19,8 +19,8 @@ jobs:
                     git reset --hard origin/main  # Ensure clean state
                     git pull origin main  # Pull latest changes
                     
-                    source venv/bin/activate  # Activate virtual environment
-                    pip install -r requirements.txt  # Install dependencies if needed 
+                    source env/bin/activate  # Activate virtual environment
+                    # pip install -r requirements.txt  # Install dependencies if needed 
                     
                     pm2 restart fastapi-app
                 EOF
