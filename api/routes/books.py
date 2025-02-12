@@ -42,7 +42,7 @@ async def create_book(book: Book):
     )
 
 
-# Endpoint for getting all books
+# Endpoint for retrieving all books
 @router.get(
     "/", response_model=OrderedDict[int, Book], status_code=status.HTTP_200_OK
 )
