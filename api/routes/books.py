@@ -33,6 +33,7 @@ db.books = {
 }
 
 
+# Endpoint for creating a new book
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_book(book: Book):
     db.add_book(book)
@@ -60,7 +61,7 @@ async def get_book(book_id: int):
             status_code=status.HTTP_404_NOT_FOUND, 
             detail="404 Not Found")
 
-# This endpoint allows book to be modified
+# Endpoint for modifying book by book_id
 @router.put("/{book_id}", response_model=Book, status_code=status.HTTP_200_OK)
 async def update_book(book_id: int, book: Book) -> Book:
     return JSONResponse(
