@@ -42,9 +42,18 @@ async def create_book(book: Book):
     )
 
 
-@router.get("/define”)
-async def define():
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="The Definition of Government")
+@router.get("/test/{book_id}", response_model=Book, status_code=status.HTTP_200_OK)
+async def get_book_test(book_id: int) -> Union[Book, dict]:
+    try:
+        book = db.get_book(book_id)
+        if book is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="404 Not Found")
+        return book
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail="This is a test route.")
+
 
 # Endpoint for retrieving all books
 @router.get(
