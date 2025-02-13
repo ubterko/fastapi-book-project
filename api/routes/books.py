@@ -64,7 +64,7 @@ async def get_book(book_id: int) -> Union[Book, dict]:
             detail="Book not found")
 
 
-# Endpoint for modifying book by book_id
+# Endpoint for modifying a book by book_id
 @router.put("/{book_id}", response_model=Book, status_code=status.HTTP_200_OK)
 async def update_book(book_id: int, book: Book) -> Book:
     return JSONResponse(
