@@ -19,5 +19,10 @@ jobs:
                     git reset --hard origin/main  # Ensure clean state
                     git pull origin main  # Pull latest changes
                     source env/bin/activate  # Activate virtual environment 
-                    pm2 restart fastapi-app
+                    pm2 stop fastapi-app
+                    pm2 delete fastapi-app
+                    pm2 start "uvicorn main:app --host 127.0.0.1 --port 8000 --workers 4" --name fastapi-app 
+                    find . -name "*.pyc" -delete
+                    sudo systemctl restart nginx
+                    sudo systemctl enable nginx
                 EOF
