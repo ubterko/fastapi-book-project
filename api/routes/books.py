@@ -42,6 +42,10 @@ async def create_book(book: Book):
     )
 
 
+@router.get("/define”)
+async def define():
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="The Definition of Government")
+
 # Endpoint for retrieving all books
 @router.get(
     "/", response_model=OrderedDict[int, Book], status_code=status.HTTP_200_OK
